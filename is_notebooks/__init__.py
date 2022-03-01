@@ -72,7 +72,7 @@ class API:
                        "kod": self.course}
 
     def _get(self, params) -> APIResponse:
-        kw_params = {param[0]: param[1] for param in params} + self.params
+        kw_params = {**self.params, param[0]: param[1] for param in params}
         resp = requests.get(self.university.API_URL, params=kw_params)
         return APIResponse(resp)
 
