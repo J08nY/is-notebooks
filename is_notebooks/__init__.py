@@ -57,25 +57,23 @@ class APIResponse:
 
 
 class API:
-    session: requests.Session
     university: University
     faculty: Faculty
     course: str
     api_key: str
 
     def __init__(self, university: University, faculty: Faculty, course: str, api_key: str):
-        self.session = requests.Session()
         self.university = university
         self.faculty = faculty
         self.course = course
         self.api_key = api_key
-        self.session.params = {"klic": self.api_key,
-                               "fakulta": self.faculty.id,
-                               "kod": self.course}
+        self.params = {"klic": self.api_key,
+                       "fakulta": self.faculty.id,
+                       "kod": self.course}
 
     def _get(self, params) -> APIResponse:
-        kw_params = {param[0]: param[1] for param in params}
-        resp = self.session.get(self.university.API_URL, params=kw_params)
+        kw_params = {param[0]: param[1] for param in params} + self.params
+        resp = requests.get(self.university.API_URL, params=kw_params)
         return APIResponse(resp)
 
     def info(self) -> APIResponse:
