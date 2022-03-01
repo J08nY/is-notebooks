@@ -74,7 +74,8 @@ class API:
                                "kod": self.course}
 
     def _get(self, params) -> APIResponse:
-        resp = self.session.get(self.university.API_URL, params=params)
+        kw_params = {param[0]: param[1] for param in params}
+        resp = self.session.get(self.university.API_URL, params=kw_params)
         return APIResponse(resp)
 
     def info(self) -> APIResponse:
