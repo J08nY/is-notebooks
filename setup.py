@@ -14,5 +14,9 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3.9",
         "Topic :: Internet :: WWW/HTTP :: Dynamic Content"
-    ]
+    ],
+    dependencies=[
+        "requests",
+        "beautifulsoup4[lxml]"
+    ],
 )
