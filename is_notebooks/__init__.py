@@ -55,6 +55,9 @@ class APIResponse:
         self.response = response
         self.xml = BeautifulSoup(response.content, "lxml-xml")
 
+    def __str__(self):
+        return f"{response}:\n{xml}"
+
 
 class API:
     university: University
